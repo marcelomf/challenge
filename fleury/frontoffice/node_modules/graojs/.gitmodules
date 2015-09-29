@@ -1,0 +1,23 @@
+[submodule "graojs-core"]
+	path = vendor/graojs/core
+	url = https://github.com/synackbr/graojs-core
+
+[submodule "graojs-generator"]
+        path = vendor/graojs/generator
+        url = https://github.com/synackbr/graojs-generator
+
+[submodule "graojs-builder"]
+        path = vendor/graojs/builder
+        url = https://github.com/synackbr/graojs-builder
+
+[submodule "graojs-angularjs"]
+        path = vendor/angularjs
+        url = https://github.com/synackbr/graojs-angularjs
+
+[submodule "graojs-bootstrap"]
+        path = vendor/bootstrap
+        url = https://github.com/synackbr/graojs-bootstrap
+
+[submodule "graojs-font-awesome"]
+        path = vendor/font-awesome
+        url = https://github.com/synackbr/graojs-font-awesome
