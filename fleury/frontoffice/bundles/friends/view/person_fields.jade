@@ -1,0 +1,349 @@
+
+mixin form_fields_person()
+
+  .form-group(ng-class="{'has-error': errors.person.name}")
+    input.form-control(type='text', ng-model="person.name", placeholder=__('Name')) 
+    span.help-block.ng-hide(ng-show="errors.person.name")='{{ errors.person.name }}'
+
+  .form-group(ng-class="{'has-error': errors.person.born}")
+    input.form-control(type='input', ng-model="person.born", placeholder=__('Born')
+      show-weeks="false", datepicker-popup=__("yyyy-MM-dd"), day-format="dd", month-format="MM", year-format="yyyy", year-range="20", 
+      day-header-format="EEE", day-title-format="MM/yyyy", moth-tittle-format="yyyy", datepicker-options="{ 'starting-day' : '1' }",
+      current-text=__('Today'), toggle-weeks-text=__('Weeks'), clear-text=__('Clear'), close-text=__('Close'))
+    span.help-block.ng-hide(ng-show="errors.person.born")='{{ errors.person.born }}'
+
+  .form-group(ng-class="{'has-error': errors.person.tags}")
+    .input-group
+      select.form-control(ui-select2, ng-model="person.tags", data-placeholder=__('Tag'), multiple='true')
+
+        option.form-control(value='{{tag._id }}', ng-repeat='tag in tags') {{ tag.name }}
+      span.input-group-btn
+        button.btn.btn-primary(ng-class="{'btn-danger': errors.person.tags}", ng-click='person = person != null ? person : {}; share.refSaveObject({ schemaObject : "person", object : person != null ? person : {} }); share.refSaveObject( { schemaObject : "newEmails", object : newEmails != null ? newEmails : {} }); share.refSaveObject( { schemaObject : "newPhones", object : newPhones != null ? newPhones : {} }); share.refSaveObject( { schemaObject : "newAddress", object : newAddress != null ? newAddress : {} }); share.refSaveObject( { schemaObject : "newUrls", object : newUrls != null ? newUrls : {} }); share.refSaveObject( { schemaObject : "newIndividualRelationships", object : newIndividualRelationships != null ? newIndividualRelationships : {} }); share.refSaveObject( { schemaObject : "newLegal_entityRelationships", object : newLegal_entityRelationships != null ? newLegal_entityRelationships : {} });  ;person = person != null ? person : {}; share.refClean("tag"); share.refAdd({ schemaRef : "tag", refList : tags, schemaObject : "person", object : person, objectField: person, field: "tags", isArray : true }); share.window("createOrUpdateTag");') + 
+    span.help-block.ng-hide(ng-show="errors.person.tags")='{{ errors.person.tags }}'
+
+  h4=__("Emails")
+
+  .form-group(ng-class="{'has-error': errors.newEmails.principal}")
+    label.checkbox-inline
+      input(type='checkbox', ng-model="newEmails.principal" value='') 
+      =__('Principal')
+    span.help-block.ng-hide(ng-show="errors.newEmails.principal")='{{ errors.newEmails.principal }}'
+
+  .form-group(ng-class="{'has-error': errors.newEmails.email}")
+    input.form-control(type='text', ng-model="newEmails.email", placeholder=__('Email')) 
+    span.help-block.ng-hide(ng-show="errors.newEmails.email")='{{ errors.newEmails.email }}'
+
+  .form-group(ng-class="{'has-error': errors.newEmails.activated}")
+    label.checkbox-inline
+      input(type='checkbox', ng-model="newEmails.activated" value='') 
+      =__('Activated')
+    span.help-block.ng-hide(ng-show="errors.newEmails.activated")='{{ errors.newEmails.activated }}'
+
+  .form-group
+    button.btn.btn-primary.btn-lg.btn-block(ng-click='createOrUpdateEmails(); clearEmails();')=__('Save')
+    .table-responsive(ng-show="person.emails && person.emails.length > 0")
+      table.table.table-striped
+        thead
+          tr
+            th=__('Principal') 
+            th=__('Email') 
+            th=__('Activated') 
+            th.table-actions=__('Actions')
+        tbody
+          tr(ng-repeat="item in person.emails track by $index")
+            td {{ item.principal }}
+            td {{ item.email }}
+            td {{ item.activated }}
+            td
+              button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyEmailsByIndex($index);') 
+              | 
+              button.btn.btn-primary.btn-xs.icon.icon-edit(type='button', ng-click='selectEmails($index);')
+
+  h4=__("Phones")
+
+  .form-group(ng-class="{'has-error': errors.newPhones.type}")
+    select.form-control(ui-select2, ng-model="newPhones.type", data-placeholder=__('Type'))
+      option.form-control(value='')
+      option.form-control(value='residence')=__('Residence')
+      option.form-control(value='comercial')=__('Comercial')
+      option.form-control(value='mobile')=__('Mobile')
+      option.form-control(value='fax')=__('Fax')
+    span.help-block.ng-hide(ng-show="errors.newPhones.type")='{{ errors.newPhones.type }}'
+
+  .form-group(ng-class="{'has-error': errors.newPhones.principal}")
+    label.checkbox-inline
+      input(type='checkbox', ng-model="newPhones.principal" value='') 
+      =__('Principal')
+    span.help-block.ng-hide(ng-show="errors.newPhones.principal")='{{ errors.newPhones.principal }}'
+
+  .form-group(ng-class="{'has-error': errors.newPhones.ddi}")
+    input.form-control(type='text', ng-model="newPhones.ddi", placeholder=__('Ddi')) 
+    span.help-block.ng-hide(ng-show="errors.newPhones.ddi")='{{ errors.newPhones.ddi }}'
+
+  .form-group(ng-class="{'has-error': errors.newPhones.ddd}")
+    input.form-control(type='text', ng-model="newPhones.ddd", placeholder=__('Ddd')) 
+    span.help-block.ng-hide(ng-show="errors.newPhones.ddd")='{{ errors.newPhones.ddd }}'
+
+  .form-group(ng-class="{'has-error': errors.newPhones.number}")
+    input.form-control(type='text', ng-model="newPhones.number", placeholder=__('Number')) 
+    span.help-block.ng-hide(ng-show="errors.newPhones.number")='{{ errors.newPhones.number }}'
+
+  .form-group(ng-class="{'has-error': errors.newPhones.branch}")
+    input.form-control(type='text', ng-model="newPhones.branch", placeholder=__('Branch')) 
+    span.help-block.ng-hide(ng-show="errors.newPhones.branch")='{{ errors.newPhones.branch }}'
+
+  .form-group
+    button.btn.btn-primary.btn-lg.btn-block(ng-click='createOrUpdatePhones(); clearPhones();')=__('Save')
+    .table-responsive(ng-show="person.phones && person.phones.length > 0")
+      table.table.table-striped
+        thead
+          tr
+            th=__('Type') 
+            th=__('Principal') 
+            th=__('Ddi') 
+            th=__('Ddd') 
+            th=__('Number') 
+            th=__('Branch') 
+            th.table-actions=__('Actions')
+        tbody
+          tr(ng-repeat="item in person.phones track by $index")
+            td {{ item.type }}
+            td {{ item.principal }}
+            td {{ item.ddi }}
+            td {{ item.ddd }}
+            td {{ item.number }}
+            td {{ item.branch }}
+            td
+              button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyPhonesByIndex($index);') 
+              | 
+              button.btn.btn-primary.btn-xs.icon.icon-edit(type='button', ng-click='selectPhones($index);')
+
+  h4=__("Address")
+
+  .form-group(ng-class="{'has-error': errors.newAddress.type}")
+    select.form-control(ui-select2, ng-model="newAddress.type", data-placeholder=__('Type'))
+      option.form-control(value='')
+      option.form-control(value='residence')=__('Residence')
+      option.form-control(value='comercial')=__('Comercial')
+    span.help-block.ng-hide(ng-show="errors.newAddress.type")='{{ errors.newAddress.type }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.principal}")
+    label.checkbox-inline
+      input(type='checkbox', ng-model="newAddress.principal" value='') 
+      =__('Principal')
+    span.help-block.ng-hide(ng-show="errors.newAddress.principal")='{{ errors.newAddress.principal }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.country}")
+    input.form-control(type='text', ng-model="newAddress.country", placeholder=__('Country')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.country")='{{ errors.newAddress.country }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.state}")
+    input.form-control(type='text', ng-model="newAddress.state", placeholder=__('State')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.state")='{{ errors.newAddress.state }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.city}")
+    input.form-control(type='text', ng-model="newAddress.city", placeholder=__('City')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.city")='{{ errors.newAddress.city }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.zip_code}")
+    input.form-control(type='text', ng-model="newAddress.zip_code", placeholder=__('Zip Code')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.zip_code")='{{ errors.newAddress.zip_code }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.sector}")
+    input.form-control(type='text', ng-model="newAddress.sector", placeholder=__('Sector')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.sector")='{{ errors.newAddress.sector }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.street}")
+    input.form-control(type='text', ng-model="newAddress.street", placeholder=__('Street')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.street")='{{ errors.newAddress.street }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.number}")
+    input.form-control(type='text', ng-model="newAddress.number", placeholder=__('Num.')) 
+    span.help-block.ng-hide(ng-show="errors.newAddress.number")='{{ errors.newAddress.number }}'
+
+  .form-group(ng-class="{'has-error': errors.newAddress.complement}")
+    textarea.form-control(ng-model="newAddress.complement", placeholder=__('Complement'))
+    span.help-block.ng-hide(ng-show="errors.newAddress.complement")='{{ errors.newAddress.complement }}'
+
+  .form-group
+    button.btn.btn-primary.btn-lg.btn-block(ng-click='createOrUpdateAddress(); clearAddress();')=__('Save')
+    .table-responsive(ng-show="person.address && person.address.length > 0")
+      table.table.table-striped
+        thead
+          tr
+            th=__('Type') 
+            th=__('Principal') 
+            th=__('Country') 
+            th=__('State') 
+            th=__('City') 
+            th=__('Zip Code') 
+            th=__('Sector') 
+            th=__('Street') 
+            th=__('Num.') 
+            th=__('Complement') 
+            th.table-actions=__('Actions')
+        tbody
+          tr(ng-repeat="item in person.address track by $index")
+            td {{ item.type }}
+            td {{ item.principal }}
+            td {{ item.country }}
+            td {{ item.state }}
+            td {{ item.city }}
+            td {{ item.zip_code }}
+            td {{ item.sector }}
+            td {{ item.street }}
+            td {{ item.number }}
+            td {{ item.complement }}
+            td
+              button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyAddressByIndex($index);') 
+              | 
+              button.btn.btn-primary.btn-xs.icon.icon-edit(type='button', ng-click='selectAddress($index);')
+
+  h4=__("Urls")
+
+  .form-group(ng-class="{'has-error': errors.newUrls.type}")
+    select.form-control(ui-select2, ng-model="newUrls.type", data-placeholder=__('Type'))
+      option.form-control(value='')
+      option.form-control(value='comercial')=__('Comercial')
+      option.form-control(value='blog')=__('Blog')
+      option.form-control(value='linkedin')=__('LinkedIn')
+      option.form-control(value='facebook')=__('FaceBook')
+      option.form-control(value='twitter')=__('Twitter')
+      option.form-control(value='youtube')=__('YouTube')
+    span.help-block.ng-hide(ng-show="errors.newUrls.type")='{{ errors.newUrls.type }}'
+
+  .form-group(ng-class="{'has-error': errors.newUrls.url}")
+    input.form-control(type='text', ng-model="newUrls.url", placeholder=__('Url')) 
+    span.help-block.ng-hide(ng-show="errors.newUrls.url")='{{ errors.newUrls.url }}'
+
+  .form-group
+    button.btn.btn-primary.btn-lg.btn-block(ng-click='createOrUpdateUrls(); clearUrls();')=__('Save')
+    .table-responsive(ng-show="person.urls && person.urls.length > 0")
+      table.table.table-striped
+        thead
+          tr
+            th=__('Type') 
+            th=__('Url') 
+            th.table-actions=__('Actions')
+        tbody
+          tr(ng-repeat="item in person.urls track by $index")
+            td {{ item.type }}
+            td {{ item.url }}
+            td
+              button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyUrlsByIndex($index);') 
+              | 
+              button.btn.btn-primary.btn-xs.icon.icon-edit(type='button', ng-click='selectUrls($index);')
+
+  .form-group(ng-class="{'has-error': errors.person.type}")
+    label.radio-inline
+      input(type='radio', ng-model="person.type" value='individual') 
+      =__('Individual')
+    label.radio-inline
+      input(type='radio', ng-model="person.type" value='legalentity') 
+      =__('Legal Entity')
+    span.help-block.ng-hide(ng-show="errors.person.type")='{{ errors.person.type }}'
+
+  h4=__("Individual")
+
+  .form-group(ng-class="{'has-error': errors.person.individual.sex}")
+    label.radio-inline
+      input(type='radio', ng-model="person.individual.sex" value='masculine') 
+      =__('Masculine')
+    label.radio-inline
+      input(type='radio', ng-model="person.individual.sex" value='feminine') 
+      =__('Feminine')
+    span.help-block.ng-hide(ng-show="errors.person.individual.sex")='{{ errors.person.individual.sex }}'
+
+  .form-group(ng-class="{'has-error': errors.person.individual.cpf}")
+    input.form-control(type='text', ng-model="person.individual.cpf", placeholder=__('CPF')) 
+    span.help-block.ng-hide(ng-show="errors.person.individual.cpf")='{{ errors.person.individual.cpf }}'
+
+  h4=__("Relationships")
+
+  .form-group(ng-class="{'has-error': errors.newIndividualRelationships.type}")
+    select.form-control(ui-select2, ng-model="newIndividualRelationships.type", data-placeholder=__('Type'))
+      option.form-control(value='')
+      option.form-control(value='legalguardians')=__('Legal Guardian')
+      option.form-control(value='contacts')=__('Contacts')
+    span.help-block.ng-hide(ng-show="errors.newIndividualRelationships.type")='{{ errors.newIndividualRelationships.type }}'
+
+  .form-group(ng-class="{'has-error': errors.newIndividualRelationships.persons}")
+      select.form-control(ui-select2, ng-model="newIndividualRelationships.persons", data-placeholder=__('Person'), multiple='true')
+
+        option.form-control(value='{{person._id }}', ng-repeat='person in persons') {{ person._id }}
+    span.help-block.ng-hide(ng-show="errors.newIndividualRelationships.persons")='{{ errors.newIndividualRelationships.persons }}'
+
+  .form-group
+    button.btn.btn-primary.btn-lg.btn-block(ng-click='createOrUpdateIndividualRelationships(); clearIndividualRelationships();')=__('Save')
+    .table-responsive(ng-show="person.individual.relationships && person.individual.relationships.length > 0")
+      table.table.table-striped
+        thead
+          tr
+            th=__('Type') 
+            th=__('Person') 
+            th.table-actions=__('Actions')
+        tbody
+          tr(ng-repeat="item in person.individual.relationships track by $index")
+            td {{ item.type }}
+            td {{ item.persons }}
+            td
+              button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyIndividualRelationshipsByIndex($index);') 
+              | 
+              button.btn.btn-primary.btn-xs.icon.icon-edit(type='button', ng-click='selectIndividualRelationships($index);')
+
+  h4=__("Legal_entity")
+
+  .form-group(ng-class="{'has-error': errors.person.legal_entity.cnpj}")
+    input.form-control(type='text', ng-model="person.legal_entity.cnpj", placeholder=__('CNPJ')) 
+    span.help-block.ng-hide(ng-show="errors.person.legal_entity.cnpj")='{{ errors.person.legal_entity.cnpj }}'
+
+  .form-group(ng-class="{'has-error': errors.person.legal_entity.state_registration}")
+    input.form-control(type='text', ng-model="person.legal_entity.state_registration", placeholder=__('State Registration')) 
+    span.help-block.ng-hide(ng-show="errors.person.legal_entity.state_registration")='{{ errors.person.legal_entity.state_registration }}'
+
+  h4=__("Relationships")
+
+  .form-group(ng-class="{'has-error': errors.newLegal_entityRelationships.type}")
+    select.form-control(ui-select2, ng-model="newLegal_entityRelationships.type", data-placeholder=__('Type'))
+      option.form-control(value='')
+      option.form-control(value='representatives')=__('Representatives')
+      option.form-control(value='partners')=__('Partners')
+      option.form-control(value='branchs')=__('Branchs')
+    span.help-block.ng-hide(ng-show="errors.newLegal_entityRelationships.type")='{{ errors.newLegal_entityRelationships.type }}'
+
+  .form-group(ng-class="{'has-error': errors.newLegal_entityRelationships.persons}")
+      select.form-control(ui-select2, ng-model="newLegal_entityRelationships.persons", data-placeholder=__('Person'), multiple='true')
+
+        option.form-control(value='{{person._id }}', ng-repeat='person in persons') {{ person._id }}
+    span.help-block.ng-hide(ng-show="errors.newLegal_entityRelationships.persons")='{{ errors.newLegal_entityRelationships.persons }}'
+
+  .form-group
+    button.btn.btn-primary.btn-lg.btn-block(ng-click='createOrUpdateLegal_entityRelationships(); clearLegal_entityRelationships();')=__('Save')
+    .table-responsive(ng-show="person.legal_entity.relationships && person.legal_entity.relationships.length > 0")
+      table.table.table-striped
+        thead
+          tr
+            th=__('Type') 
+            th=__('Person') 
+            th.table-actions=__('Actions')
+        tbody
+          tr(ng-repeat="item in person.legal_entity.relationships track by $index")
+            td {{ item.type }}
+            td {{ item.persons }}
+            td
+              button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyLegal_entityRelationshipsByIndex($index);') 
+              | 
+              button.btn.btn-primary.btn-xs.icon.icon-edit(type='button', ng-click='selectLegal_entityRelationships($index);')
+
+  .form-group(ng-class="{'has-error': errors.person.news}")
+    label.checkbox-inline
+      input(type='checkbox', ng-model="person.news" value='IS_NEWS', checked='true') 
+      =__('Receive newsletter ?')
+    span.help-block.ng-hide(ng-show="errors.person.news")='{{ errors.person.news }}'
+
+mixin filter_fields_person() 
+
+  .form-group(ng-class="{'has-error': errors.dataList.filter.name}")
+    input.form-control(type='text', ng-model="dataList.filter.name", placeholder=__('Name')) 
+    span.help-block.ng-hide(ng-show="errors.dataList.filter.name")='{{ errors.dataList.filter.name }}'
+         

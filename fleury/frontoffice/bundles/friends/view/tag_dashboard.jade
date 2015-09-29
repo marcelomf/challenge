@@ -1,0 +1,25 @@
+
+extends /frontend/theme/layout
+block content
+  .container(ng-controller='TagPublicController', ng-init='clearTag(); share.window("listTag");')
+    .row
+      .col-md-12
+        h2=__('Tags')
+    .row
+      .col-md-12
+        include tag_dashboard_actions
+    .row(ng-switch='share.selectWindow')
+      .col-md-12(ng-switch-when="listTag")
+        include tag_list
+      .col-md-6.col-md-offset-3(ng-switch-when="createOrUpdateTag")
+        include tag_form
+        +form_tag(true)
+      .col-md-6.col-md-offset-3(ng-switch-when="showTag")
+        include tag_show
+
+    .row
+      .col-md-12
+        include tag_dashboard_actions
+
+    script(src='/js/tag/TagPublicFactory.js', type='text/javascript', charset='utf-8').
+    script(src='/js/tag/TagPublicController.js', type='text/javascript', charset='utf-8').

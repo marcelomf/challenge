@@ -1,0 +1,37 @@
+
+mixin form_fields_tag()
+
+  .form-group(ng-class="{'has-error': errors.tag.name}")
+    input.form-control(type='text', ng-model="tag.name", placeholder=__('Name')) 
+    span.help-block.ng-hide(ng-show="errors.tag.name")='{{ errors.tag.name }}'
+
+  .form-group(ng-class="{'has-error': errors.tag.code}")
+    input.form-control(type='text', ng-model="tag.code", placeholder=__('Code')) 
+    span.help-block.ng-hide(ng-show="errors.tag.code")='{{ errors.tag.code }}'
+
+  .form-group(ng-class="{'has-error': errors.tag.description}")
+    textarea.form-control(ng-model="tag.description", placeholder=__('Description'))
+    span.help-block.ng-hide(ng-show="errors.tag.description")='{{ errors.tag.description }}'
+
+  .form-group(ng-class="{'has-error': errors.tag.subtags}")
+      select.form-control(ui-select2, ng-model="tag.subtags", data-placeholder=__('Sub Tags'), multiple='true')
+
+        option.form-control(value='{{tag._id }}', ng-repeat='tag in tags') {{ tag.name }}
+    span.help-block.ng-hide(ng-show="errors.tag.subtags")='{{ errors.tag.subtags }}'
+
+mixin filter_fields_tag() 
+
+  .form-group(ng-class="{'has-error': errors.dataList.filter.name}")
+    input.form-control(type='text', ng-model="dataList.filter.name", placeholder=__('Name')) 
+    span.help-block.ng-hide(ng-show="errors.dataList.filter.name")='{{ errors.dataList.filter.name }}'
+
+  .form-group(ng-class="{'has-error': errors.dataList.filter.code}")
+    input.form-control(type='text', ng-model="dataList.filter.code", placeholder=__('Code')) 
+    span.help-block.ng-hide(ng-show="errors.dataList.filter.code")='{{ errors.dataList.filter.code }}'
+
+  .form-group(ng-class="{'has-error': errors.dataList.filter.subtags}")
+      select.form-control(ui-select2, ng-model="dataList.filter.subtags", data-placeholder=__('Sub Tags'), multiple='true')
+
+        option.form-control(value='{{tag._id }}', ng-repeat='tag in tags') {{ tag.name }}
+    span.help-block.ng-hide(ng-show="errors.dataList.filter.subtags")='{{ errors.dataList.filter.subtags }}'
+         

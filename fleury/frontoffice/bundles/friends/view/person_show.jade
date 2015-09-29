@@ -1,0 +1,44 @@
+h3=__('Person')
+  small  {{ person._id }}
+.table-responsive
+  table.table.table-striped
+    tr
+      td=__('Name')
+      td {{ person.name }}
+    tr
+      td=__('Born')
+      td {{ person.born }}
+    tr
+      td=__('Tag')
+      td 
+        span(ng-repeat="tag in person._tags") {{ tag.name }} 
+    tr
+      td=__('emails')
+      td {{ person.emails }}
+    tr
+      td=__('phones')
+      td {{ person.phones }}
+    tr
+      td=__('address')
+      td {{ person.address }}
+    tr
+      td=__('urls')
+      td {{ person.urls }}
+    tr
+      td=__('Person Type')
+      td {{ person.type }}
+    tr
+      td=__('individual')
+      td {{ person.individual }}
+    tr
+      td=__('legal_entity')
+      td {{ person.legal_entity }}
+    tr
+      td=__('Receive newsletter ?')
+      td {{ person.news }}
+.form-group
+  button.btn.btn-primary(type='button', ng-click='share.window("createOrUpdatePerson");')=__('Edit')
+  | 
+  button.btn.btn-danger(type='button', ng-click='person.$delete(); clearPerson(); queryPerson(); countPerson(); share.window("listPerson");')=__('Remove')
+  | 
+  button.btn.btn-default(type='button', ng-click='clearPerson(); queryPerson(); share.window("listPerson")')=__('List')

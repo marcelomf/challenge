@@ -1,0 +1,10 @@
+.form-group
+  button.btn.btn-success(type='button', ng-click='createOrUpdatePerson("listPerson");')=__('Save')
+  | 
+  button.btn.btn-warning(type='button', ng-click='createOrUpdatePerson("createOrUpdatePerson");')=__('Save and continue')
+  | 
+  button.btn.btn-danger(type='button', ng-show="person._id", ng-click='person.$delete(); clearPerson(); queryPerson(); countPerson(); share.window("listPerson");')=__('Remove')
+  | 
+  button.btn.btn-info(type='button', ng-click='share.window("showPerson")')=__('Show')
+  | 
+  button.btn.btn-default(type='button', ng-click='clearPerson(); queryPerson(); share.window("listPerson")')=__('List')

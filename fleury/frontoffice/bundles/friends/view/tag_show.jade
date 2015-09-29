@@ -1,0 +1,23 @@
+h3=__('Tag')
+  small  {{ tag._id }}
+.table-responsive
+  table.table.table-striped
+    tr
+      td=__('Name')
+      td {{ tag.name }}
+    tr
+      td=__('Code')
+      td {{ tag.code }}
+    tr
+      td=__('Description')
+      td {{ tag.description }}
+    tr
+      td=__('Sub Tags')
+      td 
+        span(ng-repeat="tag in tag._subtags") {{ tag.name }} 
+.form-group
+  button.btn.btn-primary(type='button', ng-click='share.window("createOrUpdateTag");')=__('Edit')
+  | 
+  button.btn.btn-danger(type='button', ng-click='tag.$delete(); clearTag(); queryTag(); countTag(); share.window("listTag");')=__('Remove')
+  | 
+  button.btn.btn-default(type='button', ng-click='clearTag(); queryTag(); share.window("listTag")')=__('List')

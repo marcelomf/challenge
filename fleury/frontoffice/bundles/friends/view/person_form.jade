@@ -1,0 +1,8 @@
+mixin form_person(includeActions)
+  h3=__('Person')
+    small  {{ person._id }}
+  form.form-horizontal(role='form')
+    include person_fields
+    +form_fields_person()
+    if includeActions
+      include person_form_actions

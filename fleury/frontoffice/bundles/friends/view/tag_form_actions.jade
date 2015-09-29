@@ -1,0 +1,10 @@
+.form-group
+  button.btn.btn-success(type='button', ng-click='createOrUpdateTag("listTag");')=__('Save')
+  | 
+  button.btn.btn-warning(type='button', ng-click='createOrUpdateTag("createOrUpdateTag");')=__('Save and continue')
+  | 
+  button.btn.btn-danger(type='button', ng-show="tag._id", ng-click='tag.$delete(); clearTag(); queryTag(); countTag(); share.window("listTag");')=__('Remove')
+  | 
+  button.btn.btn-info(type='button', ng-click='share.window("showTag")')=__('Show')
+  | 
+  button.btn.btn-default(type='button', ng-click='clearTag(); queryTag(); share.window("listTag")')=__('List')

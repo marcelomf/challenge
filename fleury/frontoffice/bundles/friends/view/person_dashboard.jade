@@ -1,0 +1,39 @@
+
+extends /frontend/theme/layout
+block content
+  .container(ng-controller='PersonPublicController', ng-init='clearPerson(); share.window("listPerson");')
+    .row
+      .col-md-12
+        h2=__('Persons')
+    .row
+      .col-md-12
+        include person_dashboard_actions
+    .row(ng-switch='share.selectWindow')
+      .col-md-12(ng-switch-when="listPerson")
+        include person_list
+      .col-md-6.col-md-offset-3(ng-switch-when="createOrUpdatePerson")
+        include person_form
+        +form_person(true)
+      .col-md-6.col-md-offset-3(ng-switch-when="showPerson")
+        include person_show
+
+      .col-md-6.col-md-offset-3(ng-switch-when="createOrUpdateTag", ng-controller='TagPublicController')
+        h3=__('Tag')
+          small=__('Person')
+        form.form-horizontal(role='form')
+          include /friends/view/tag_fields
+          +form_fields_tag()
+        .form-horizontal
+          .form-group
+            button.btn.btn.btn-success(type='button', ng-click='createOrUpdateTag(null, true);')=__('Save and back')
+            | 
+            button.btn.btn.btn-default(type='button', ng-click='clearTag(); share.windowBack();')=__('Cancel')
+
+    .row
+      .col-md-12
+        include person_dashboard_actions
+
+    script(src='/js/tag/TagPublicFactory.js', type='text/javascript', charset='utf-8').
+    script(src='/js/tag/TagPublicController.js', type='text/javascript', charset='utf-8').
+    script(src='/js/person/PersonPublicFactory.js', type='text/javascript', charset='utf-8').
+    script(src='/js/person/PersonPublicController.js', type='text/javascript', charset='utf-8').

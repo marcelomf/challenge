@@ -1,0 +1,8 @@
+mixin form_tag(includeActions)
+  h3=__('Tag')
+    small  {{ tag._id }}
+  form.form-horizontal(role='form')
+    include tag_fields
+    +form_fields_tag()
+    if includeActions
+      include tag_form_actions

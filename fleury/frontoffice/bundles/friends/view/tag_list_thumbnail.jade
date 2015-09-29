@@ -1,0 +1,28 @@
+.row
+  .col-md-12(collapse="notFilter")
+    include tag_filter
+  .col-md-12
+    button.btn.btn-default.btn-block.btn-xs(ng-click="notFilter = !notFilter")=__('FILTER')
+.row
+  .col-md-12
+    .row
+      .col-md-3(ng-repeat="tag in dataList.data")
+        .thumbnail
+          .caption
+            p {{ tag.name }} 
+
+            p {{ tag.code }} 
+
+            p 
+            span(ng-repeat="tag in tag.subtags") {{ tag.name }} 
+
+            button.btn.btn-primary.btn-sm.icon.icon-edit(type='button', ng-click='selectTag($index); share.window("createOrUpdateTag");')=__('Edit')
+            | 
+            button.btn.btn-danger.btn-sm.icon.icon-trash(type='button', ng-click='destroyTagByIndex($index); queryTag();')=__('Remove')
+            | 
+            button.btn.btn-info.btn-sm.icon.icon-plus(type='button', ng-click='selectTag($index); share.window("showTag");')=__('Show')
+.row
+  .col-md-12.text-right
+    p=__('Listing {{ dataList.status.listing }} of {{ dataList.status.filtered }} filtered on {{ dataList.status.totality }} registers')
+  .col-md-12
+    button.btn.btn-default.btn-lg.btn-block(ng-click='queryMoreTag(); countTag();')=__('MORE')
