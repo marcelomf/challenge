@@ -23,10 +23,19 @@
           tr
             th(ng-class="dataList.sortClass('name')", ng-click="dataList.sortBy('name'); queryPerson();")=__('Name')
 
+            th(ng-class="dataList.sortClass('born')", ng-click="dataList.sortBy('born'); queryPerson();")=__('Born')
+
+            th(ng-class="dataList.sortClass('tags')", ng-click="dataList.sortBy('tags'); queryPerson();")=__('Tag')
+
             th.table-actions=__('Actions')
         tbody
           tr(ng-repeat="person in dataList.data")
             td {{ person.name }} 
+
+            td {{ person.born }} 
+
+            td 
+              span(ng-repeat="tag in person.tags") {{ tag.name }} 
 
             td
               button.btn.btn-danger.btn-xs.icon.icon-trash(type='button', ng-click='destroyPersonByIndex($index); queryPerson();') 

@@ -27,7 +27,9 @@ var PersonSchema = function(di) {
       validate : validate('isDate'),
       graoui: {
         label: "Born",
-        type: 'date'
+        type: 'date',
+        isList: true,
+        isFilter: true
       }
     },
     tags : [{ 
@@ -36,7 +38,9 @@ var PersonSchema = function(di) {
         graoui : {
           label: "Tag",
           type: "select",
-          attr: { multiple: true }
+          attr: { multiple: true },
+          isList: true,
+          isFilter: true
         }
     }],
     emails : [(di.schemas.email != null) ? di.schemas.email.json : (new (require('./EmailSchema'))(di)).json],

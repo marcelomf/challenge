@@ -346,4 +346,17 @@ mixin filter_fields_person()
   .form-group(ng-class="{'has-error': errors.dataList.filter.name}")
     input.form-control(type='text', ng-model="dataList.filter.name", placeholder=__('Name')) 
     span.help-block.ng-hide(ng-show="errors.dataList.filter.name")='{{ errors.dataList.filter.name }}'
+
+  .form-group(ng-class="{'has-error': errors.dataList.filter.born}")
+    input.form-control(type='input', ng-model="dataList.filter.born", placeholder=__('Born')
+      show-weeks="false", datepicker-popup=__("yyyy-MM-dd"), day-format="dd", month-format="MM", year-format="yyyy", year-range="20", 
+      day-header-format="EEE", day-title-format="MM/yyyy", moth-tittle-format="yyyy", datepicker-options="{ 'starting-day' : '1' }",
+      current-text=__('Today'), toggle-weeks-text=__('Weeks'), clear-text=__('Clear'), close-text=__('Close'))
+    span.help-block.ng-hide(ng-show="errors.dataList.filter.born")='{{ errors.dataList.filter.born }}'
+
+  .form-group(ng-class="{'has-error': errors.dataList.filter.tags}")
+      select.form-control(ui-select2, ng-model="dataList.filter.tags", data-placeholder=__('Tag'), multiple='true')
+
+        option.form-control(value='{{tag._id }}', ng-repeat='tag in tags') {{ tag.name }}
+    span.help-block.ng-hide(ng-show="errors.dataList.filter.tags")='{{ errors.dataList.filter.tags }}'
          

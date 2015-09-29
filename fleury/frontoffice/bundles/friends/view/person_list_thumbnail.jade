@@ -11,6 +11,11 @@
           .caption
             p {{ person.name }} 
 
+            p {{ person.born }} 
+
+            p 
+            span(ng-repeat="tag in person.tags") {{ tag.name }} 
+
             button.btn.btn-primary.btn-sm.icon.icon-edit(type='button', ng-click='selectPerson($index); share.window("createOrUpdatePerson");')=__('Edit')
             | 
             button.btn.btn-danger.btn-sm.icon.icon-trash(type='button', ng-click='destroyPersonByIndex($index); queryPerson();')=__('Remove')
