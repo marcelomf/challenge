@@ -14,10 +14,10 @@
               i.icon-home 
               | Home 
           if isAuth == true
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown') Admin
-              ul.dropdown-menu
-                include adminmenu
+            li
+              a(href='/admin/person') Friends
+            li
+              a(href='/admin/tag') Tags
           if isAuth == true && user && user.do('admin')
             li.dropdown
               a.dropdown-toggle(href='#', data-toggle='dropdown')=__('Access Admin')

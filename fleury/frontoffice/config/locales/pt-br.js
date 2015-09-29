@@ -266,5 +266,7 @@
 	"Produto": "Produto",
 	"Nome Produto": "Nome Produto",
 	"Valor": "Valor",
-	"produto": "produto"
+	"produto": "produto",
+	"Sub Tags": "Sub Tags",
+	"Tags": "Tags"
 }
