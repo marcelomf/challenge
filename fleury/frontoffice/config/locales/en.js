@@ -171,5 +171,9 @@
 	"Context(Sub Activitys)": "Context(Sub Activitys)",
 	"Num.": "Num.",
 	"Relashionships": "Relashionships",
-	"legal_entity": "legal_entity"
+	"legal_entity": "legal_entity",
+	"Friends": "Friends",
+	"Relationships": "Relationships",
+	"Legal_entity": "Legal_entity",
+	"Sub Tags": "Sub Tags"
 }

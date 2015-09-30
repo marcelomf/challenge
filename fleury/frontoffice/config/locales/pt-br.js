@@ -63,7 +63,7 @@
 	"updated": "atualizado",
 	"Not Found": "Não encontrado",
 	"Person": "Pessoa",
-	"Born": "Born",
+	"Born": "Nascimento",
 	"Principal": "Principal",
 	"Activated": "Ativado",
 	"Residence": "Residência",
@@ -268,5 +268,6 @@
 	"Valor": "Valor",
 	"produto": "produto",
 	"Sub Tags": "Sub Tags",
-	"Tags": "Tags"
+	"Tags": "Tags",
+	"Friends": "Friends"
 }

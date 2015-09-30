@@ -1,0 +1,11 @@
+{
+  "name": "randb-middleware",
+  "description": "Programming challenge at R&amp;B! Good luck",
+  "version": "0.0.1",
+  "author": "Marcelo Fleury <marcelo@fleury.us>",
+  "readme" : "README.md",
+  "dependencies": {
+	    "inotify": "x", "xml2js": "x"
+  },
+  "engines": { "node": ">= 0.8.x" }
+}
