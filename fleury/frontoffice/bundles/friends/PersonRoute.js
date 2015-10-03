@@ -27,6 +27,8 @@ var PersonRoute = function(di) {
     $i.controllers.passport.service.validateJson,
   	$i.controllers.person.service.validate, 
   	$i.controllers.person.service.create);
+  $i.graoExpress.post('/service/person/xml', 
+  	$i.controllers.person.service.create_xml);
   $i.graoExpress.get('/admin/person', 
     $i.controllers.passport.service.validateTpl,
   	$i.controllers.person.admin.dashboard);

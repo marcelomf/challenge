@@ -5,7 +5,14 @@ var fs       = require('fs');
 var path     = require('path');
 var xml2js   = require('xml2js');
 var Inotify  = require('inotify').Inotify;
+var request  = require('request');
 var inotify  = new Inotify();
+
+var response = function(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    console.log(body)
+  }
+}
 
 var reader = function(err, data) {
   if(err) {
@@ -15,7 +22,14 @@ var reader = function(err, data) {
 
   try {
     var json = JSON.parse(data.toString('utf8'));
-    console.log(json)
+    var builder = new xml2js.Builder();
+    var xml = builder.buildObject(json);
+    console.log(json);
+    console.log(xml);
+    request.post({url: 'http://localhost:8015/service/person/xml', 
+                 body: xml,
+                 headers: {'Content-Type': 'text/xml'}
+                }, response);
   } catch(err){
     console.log("Error: "+err);
     return;

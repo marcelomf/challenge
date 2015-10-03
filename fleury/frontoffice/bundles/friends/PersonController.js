@@ -71,6 +71,44 @@ service.create = function(req, res) {
   });
 }
 
+service.create_xml = function(req, res) {
+
+  req.rawBody = '';
+  req.setEncoding('utf8');
+  req.on('data', function(chunk) { 
+   req.rawBody += chunk;
+  });
+
+  req.on('end', function() {
+    parse = $i.xml2js.parseString;
+    parse(req.rawBody, function(err, p){
+      var person = new Person(p.root);
+      person.save(function(err, person) {
+        if(err)
+          res.json(event.newError(err).toJson());
+        else
+          res.json(event.newSuccess(res.__("Person")+" "+res.__("created")).data(person).toJson());
+      });
+    });
+  });
+  //return res.json(event.newError("teste...").toJson());
+}
+
+
+service.create = function(req, res) {
+  console.log(req.body);
+  //return res.json(event.newError("teste...").toJson());
+
+  var person = new Person(req.body);
+  person.save(function(err, person) {
+    if(err)
+      res.json(event.newError(err).toJson());
+    else
+      res.json(event.newSuccess(res.__("Person")+" "+res.__("created")).data(person).toJson());
+  });
+}
+
+
 service.update = function(req, res) {
   delete req.body._id;
   Person.findOneAndUpdate({_id : req.params.id }, req.body, { upsert : true }, function(err, person) {

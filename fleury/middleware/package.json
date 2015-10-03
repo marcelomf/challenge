@@ -5,7 +5,7 @@
   "author": "Marcelo Fleury <marcelo@fleury.us>",
   "readme" : "README.md",
   "dependencies": {
-	    "inotify": "x", "xml2js": "x"
+	    "inotify": "x", "xml2js": "x", "request": "x"
   },
   "engines": { "node": ">= 0.8.x" }
 }
