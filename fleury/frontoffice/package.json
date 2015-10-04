@@ -5,7 +5,7 @@
   "author": "Marcelo Fleury <marcelo@fleury.us>",
   "readme" : "README.md",
   "dependencies": {
-	    "graojs": "0.0.x", "bson": "", "passport": "x", "passport-local": "x", "xml2js": "xml2js"
+	    "graojs": "0.0.x", "bson": "", "passport": "x", "passport-local": "x", "xml2js": "x", "ws": "x"
   },
   "keywords": [
     "grao",
