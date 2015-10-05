@@ -19,3 +19,6 @@
 - Por questão de tempo:
   - Não implementei websockets adequadamente;
   - Não implementei links entre containers docker;
+
+- ERRATA:
+  - URL do video correta: https://goo.gl/HrLjS8
