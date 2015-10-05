@@ -52,13 +52,18 @@ RUN cd /usr/lib/node_modules/graojs/node_modules/mongodb/node_modules/mongodb-co
 
 WORKDIR challenge
 WORKDIR frontoffice
+RUN npm install
+RUN npm install -g xml2js ws
+RUN mkdir -p /data/db
 
-RUN service mongodb start && sleep 3 && grao main:create:admin --username marcelo --name Marcelo --email marcelomf@gmail.com --password admin123
+RUN /bin/bash -c "/usr/bin/mongod --smallfiles &" && sleep 5 && grao main:create:admin --username marcelo --name Marcelo --email marcelomf@gmail.com --password admin123
 
 RUN groupadd -r $SERVICE_NAME
 RUN useradd -r -s /bin/sh -d /opt/$SERVICE_NAME -c 'service user' -g $SERVICE_NAME $SERVICE_NAME
 
+VOLUME "/opt/challenge"
+
 EXPOSE 8015
 EXPOSE 8016
 EXPOSE 8080
-ENTRYPOINT dockerized.sh
+ENTRYPOINT /opt/challenge/frontoffice/dockerized.sh
