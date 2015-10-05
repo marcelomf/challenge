@@ -1,4 +1,5 @@
 
+
 function PersonPublicController($scope, $http, $q, share, Person, Tag) {
   $scope.share = share;
   $scope.notFilter = true;
@@ -101,7 +102,23 @@ function PersonPublicController($scope, $http, $q, share, Person, Tag) {
     }
 
   }
-  $scope.queryPerson("all");
+  setInterval(function(){
+    $scope.queryPerson("all");
+  }, 1000);
+  /*function updateWsPersons(dataResponse) {
+    //console.log(dataResponse);
+    $scope.persons = dataResponse;
+    $scope.dataList.data = dataResponse.slice(0, 10);
+    $scope.dataList.status.listing = $scope.dataList.data.length;
+    //share.alertClean();
+  }*/
+  //var host = window.document.location.host.replace(/:.*/, '');
+  /*var ws = new WebSocket('ws://' + host + ':8080');
+  ws.onmessage = function (event) {
+    updateWsPersons(JSON.parse(decodeURIComponent(escape(event.data))));
+  };
+*/
+
 
   $scope.countPerson = function() {
     Person.count($scope.dataList.toParams(), function(dataResponse){

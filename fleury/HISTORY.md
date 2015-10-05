@@ -15,3 +15,7 @@
 - transformar JSON em XML -> https://github.com/marcelomf/benchmark/blob/master/db/import_xml_json.js
 - pessoas com caracteristicas e com autorelacionamento -> graojs
 
+
+- Por questão de tempo:
+  - Não implementei websockets adequadamente;
+  - Não implementei links entre containers docker;

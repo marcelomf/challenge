@@ -161,7 +161,7 @@ var PersonController = function(di) {
           if(err)
             ws.send(event.newError(err).toJson());
           else
-            ws.send(persons, function(){}); // ignore errors
+            ws.send(unescape(encodeURIComponent(JSON.stringify(persons))), function(){}); // ignore errors
             //res.json(persons);
             //ws.send(JSON.stringify(process.memoryUsage()), function() { }); // ignore errors
       });
