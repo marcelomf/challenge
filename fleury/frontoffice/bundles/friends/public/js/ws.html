@@ -11,10 +11,11 @@
       }
     </style>
     <script>
-      function updateStats(memuse) {
-        document.getElementById('rss').innerHTML = memuse.rss;
-        document.getElementById('heapTotal').innerHTML = memuse.heapTotal;
-        document.getElementById('heapUsed').innerHTML = memuse.heapUsed;
+      function updateStats(result) {
+        console.log(result);
+        document.getElementById('rss').innerHTML = result;
+        //document.getElementById('heapTotal').innerHTML = memuse.heapTotal;
+        //document.getElementById('heapUsed').innerHTML = memuse.heapUsed;
       }
 
       var host = window.document.location.host.replace(/:.*/, '');

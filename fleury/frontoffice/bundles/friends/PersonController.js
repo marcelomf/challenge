@@ -142,6 +142,37 @@ var PersonController = function(di) {
   Person = models.person; // object/class
   this.service = service;
   this.admin = admin;
+
+
+  var WebSocketServer = $i.ws.Server;
+  var http = require('http');
+  var server = http.createServer($i.graoExpress);
+  server.listen(8080);
+  var wss = new WebSocketServer({server: server});
+  wss.on('connection', function(ws) {
+    var id = setInterval(function() {
+      var dataList = { page: {}, sort: 'field -_id' };
+      Person.find(dataList.filter || null).
+        sort(dataList.sort || null).
+        skip(null).
+        limit(10).
+        populate('person').
+        exec(function(err, persons) {
+          if(err)
+            ws.send(event.newError(err).toJson());
+          else
+            ws.send(persons, function(){}); // ignore errors
+            //res.json(persons);
+            //ws.send(JSON.stringify(process.memoryUsage()), function() { }); // ignore errors
+      });
+    }, 1000);
+
+    console.log('started client interval');
+    wss.on('close', function() {
+      console.log('stopping client interval');
+      clearInterval(id);
+    });
+  });
 };
 
 module.exports = exports = PersonController;

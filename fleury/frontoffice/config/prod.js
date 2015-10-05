@@ -6,7 +6,7 @@ var fs = require('fs'),
 
 module.exports = exports = {
   packageJson: packageJson,
-  ports : [8015,8016,8017,8018,8019,8020,8021,8022],
+  ports : [8015,8016],
   charset: charset,
   db: 'mongodb://localhost/grao',
   rootPath: rootPath,

@@ -33,21 +33,5 @@ var PersonRoute = function(di) {
     $i.controllers.passport.service.validateTpl,
   	$i.controllers.person.admin.dashboard);
   
-  var WebSocketServer = $i.ws.Server;
-  var http = require('http');
-  var server = http.createServer($i.graoExpress);
-  server.listen(8080);
-  var wss = new WebSocketServer({server: server});
-  wss.on('connection', function(ws) {
-    var id = setInterval(function() {
-      ws.send(JSON.stringify(process.memoryUsage()), function() { }); // ignore errors
-    }, 100);
-
-    console.log('started client interval');
-    wss.on('close', function() {
-      console.log('stopping client interval');
-      clearInterval(id);
-    });
-  });
 }
 module.exports = exports = PersonRoute;
