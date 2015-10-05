@@ -59,6 +59,7 @@ module.exports = exports = {
       { name: 'Q', object: 'q' },
       { name: 'crypto', object: 'crypto' },
       { name: 'xml2js', object: 'xml2js' },
+      { name: 'http', object: 'http' },
       { name: 'ws', object: 'ws' }
     ]
   }
